@@ -20,3 +20,19 @@
     ## Modulo 7: Proyecto final**
 
 1. ** Desarrollo de un proyecto completo**
+
+
+//funciones avanzadas 
+
+*/   
+- funcion normal: bloque de codigo nombra que recibe paramentros y devuelve valores
+    se utiliza cuando queremos logica reutilizable con inputs/fixed outputs
+- Funcion variaditica: funcion que acepta un numero variable de argumentos, se utiliza
+    cuando no sabes cuantos valores llegaran.
+- Funcion anonima: funcion sin nombre, usada inline. Callbacks, handlers, manejo de eventos
+    cuando se le pasa otra funcion.
+- Closure: Funcinon anonima que captura variables del contexto, se usa para mantener estado 
+    privado entre llamadas. Es una funcnion que recuerda,
+    
+
+/*

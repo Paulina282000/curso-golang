@@ -1,0 +1,189 @@
+// Go Basics Example
+// Este archivo muestra ejemplos ordenados de sintaxis básica en Go: variables, tipos, control de flujo, colecciones y funciones.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main2() {
+	// ----- Salida inicial -----
+	fmt.Println("Hello, World desde Go!")
+
+	// ----- Variables y Constantes -----
+	var nombre string = "Juan" // Declaración explícita
+	apellido := "Perez"        // Declaración implícita
+	edad := 25                 // Inferencia de tipo
+
+	const (
+		id = 1234567890 // Constante entera
+		pi = 3.14159    // Constante float
+	)
+	fmt.Println("Nombre:", nombre, "Apellido:", apellido, "Edad:", edad)
+	fmt.Println("ID:", id, "Pi:", pi)
+
+	// ----- Tipos Numéricos -----
+	var (
+		entero8  uint8   = 255
+		entero16 uint16  = 65535
+		f32      float32 = 2.5
+		f64      float64 = 2.5
+	)
+	fmt.Println(entero8, entero16, f32, f64)
+
+	// ----- Otros Tipos -----
+	cadena := "Hola, mundo!"
+	booleano := true
+	fmt.Println("Cadena:", cadena, "Booleano:", booleano)
+
+	// ----- Operadores Aritméticos -----
+	num1, num2 := 10, 20
+	fmt.Println("Suma:", num1+num2)
+	fmt.Println("Resta:", num1-num2)
+	fmt.Println("Multiplicación:", num1*num2)
+	fmt.Println("División:", num1/num2)
+	fmt.Println("Módulo:", num1%num2)
+
+	// ----- Operadores Lógicos -----
+	adulto, permiso := true, false
+	fmt.Println("Puede entrar?", adulto && permiso)
+	fmt.Println("Puede salir?", adulto || permiso)
+	fmt.Println("No puede salir?", !adulto)
+
+	// ----- Control de Flujo -----
+	if edad >= 18 {
+		fmt.Println("Mayor de edad")
+	} else {
+		fmt.Println("Menor de edad")
+	}
+
+	dia := 10
+	switch dia {
+	case 1:
+		fmt.Println("Lunes")
+	case 2:
+		fmt.Println("Martes")
+	default:
+		fmt.Println("Día inválido")
+	}
+
+	// ----- Bucles -----
+	for i := 0; i <= 5; i++ {
+		fmt.Println("i =", i)
+	}
+
+	// ----- Arrays -----
+	arrNombres := [3]string{"Juan", "Maria", "Pedro"}
+	fmt.Println("Array:", arrNombres)
+
+	// ----- Slices -----
+	sliceFrutas := []string{"Manzana", "Pera", "Naranja"}
+	sliceFrutas = append(sliceFrutas, "Uva")
+	fmt.Println("Slice:", sliceFrutas)
+
+	// ----- Maps -----
+	edades := map[string]int{"Juan": 20, "Maria": 25, "Pedro": 30}
+	fmt.Println("Map:", edades)
+
+	// ----- Range en Colecciones -----
+	numeros := []int{10, 20, 30, 40, 50}
+	for idx, num := range numeros {
+		fmt.Println(idx, num)
+	}
+
+	capitales := map[string]string{"Argentina": "Buenos Aires", "Brasil": "Brasilia", "Chile": "Santiago"}
+	for pais, capital := range capitales {
+		fmt.Println(pais, "->", capital)
+	}
+
+	// ----- Funciones -----
+	suma, resta := sumarYRestar(10, 20)
+	fmt.Println("Suma:", suma, "Resta:", resta)
+}
+
+// sumarYRestar devuelve la suma y resta de dos enteros
+func sumarYRestar(a, b int) (int, int) {
+	return a + b, a - b
+}
+multiplicar := func(a, b int) int {
+		return a * b
+	}
+
+	resultado := multiplicar(2, 3)
+	fmt.Println("El resultado de la multiplicacion es:", resultado)
+
+	//crear un funcion e imprimirla
+
+	doble := func(n int) int {
+		return n * 2
+	}(5) //aca se esta ejecutando la funcion anonima y se esta imprimiendo el resultado
+
+	fmt.Println("El doble de es:", doble)
+
+	//funciones anonimas como argumentos de otras funciones
+
+	//Usar funcion anonima sin asignar a una variable
+
+	fmt.Println("La suma es:", func(x, y int) int {
+		return x + y
+	}(5, 3))
+
+
+//las funciones son de primer orden, es decir, se pueden asignar a variables, pasarlas como argumentos y devolverlas como resultado
+//para esto son muy utiles las funcinoes anonimas
+
+//funciones como valores
+
+//funciones retornando otras funciones
+
+func multiplicacion(factor int) func(int) int {
+	return func(valor int) int {
+		return valor * factor
+	}
+}
+
+//funciones anonimas asigfnadas a una variable
+func main() {
+
+	//usamos la funcinon creada anteriormente
+
+	var_multiplicar := multiplicacion(2)
+
+	fmt.Println("2x3:", var_multiplicar(3))
+
+	//funciones como argumentos de otras funciones
+
+}
+
+//COUSERS
+
+	// funcino que no usa closures
+
+	counter := func() int {
+		count := 0
+		count++
+		return count
+	}
+
+	fmt.Println(counter())
+	fmt.Println(counter())
+
+	//el clouseer va a recordar el valor de count
+
+	// funcino que usa closures
+
+	counter2 := func() func() int {
+		count := 0
+		return func() int {
+			count++
+			return count
+		}
+	}()
+	fmt.Println(counter2())
+	fmt.Println(counter2())
+	fmt.Println(counter2())
+
+	// el clouseer va a recordar el valor de count
+
+	// funcino que usa closures
