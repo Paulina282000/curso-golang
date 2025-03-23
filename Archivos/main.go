@@ -106,17 +106,72 @@ func main() { //la funcion se encarga de ejecutar el programa
 	noPuedeSalir := !adulto
 	fmt.Println("No puede salir del bar:", noPuedeSalir)
 
-	//operadores de comparacion
-	// ==, !=, >, <, >=, <=
+	//estructuras de control: permiten controlar el flujo de ejecucion del programa
 
+	//if,else switch --> if si es verdadera, else si es falsa, switch es una estructura condicional que se encarga de ejecutar un bloque de codigo si una condicion es verdadera
+
+	edadEstudiante := 17
+
+	if edadEstudiante >= 18 {
+		fmt.Println("El estudiante es mayor de edad")
+	} else {
+		fmt.Println("El estudiante es menor de edad")
+	}
+
+	//condicional switch, se usa para simplificar multiples condiciones
+
+	dia := 10
+	switch dia {
+	case 1:
+		fmt.Println("Lunes")
+	case 2:
+		fmt.Println("Martes")
+	case 3:
+		fmt.Println("Miercoles")
+	case 4:
+		fmt.Println("Jueves")
+
+	case 5:
+		fmt.Println("Viernes")
+	case 6:
+		fmt.Println("Sabado")
+	case 7:
+		fmt.Println("Domingo")
+	default:
+		fmt.Println("Numero invalido")
+	}
+	//BUCLE O CICLO FOR, sirve para repetir un bloque de codigo un numero determinado de veces
+
+	//for tradicional
+
+	//for inicializaion,donde empieza; condicion,donde termina;incremente,donde se incrementa{}
+
+	for i := 0; i <= 10; i++ {
+		fmt.Println("El valor de i es:", i)
+	}
+
+	//for con rango, itera sobre listas,arreglos,mapas,etc
+
+	nombres := []string{"Juan", "Maria", "Pedro", "Ana"}
+
+	for i, nombre := range nombres {
+		fmt.Println("El valor de i es:", i, "y el valor de nombre es:", nombre)
+	}
+
+	//funciones, son bloques de codigo que se pueden reutilizar, modularizar, y encapsular
+	//pueden tener parametros y devolver valores
+	//Sintaxis:
+	//fun nombreFuncion(parametros) tiporetorno{
+	//	codigo }
+
+	//llamo la funcnion sumar desde el main
+
+	resultado, resultado2 := sumarYRestar(10, 20)
+	fmt.Println("El resultado de la suma es:", resultado)
+	fmt.Println("El resultado de la resta es:", resultado2)
 }
 
-/*
-comentario de varias lineas,
-no afectan el compilador
-*/
-
-/* las variables y las constantes se declaran con var y const
-y se utilizan para guardar datos en memoria
-
-*/
+// las funcines deben estar fuera del main par que funcionen
+func sumarYRestar(num1 int, num2 int) (int, int) {
+	return num1 + num2, num1 - num2
+}
