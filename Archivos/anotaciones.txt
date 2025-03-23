@@ -1,0 +1,22 @@
+##Modulo 1: Introduccion a GO
+1. **Fundamentos de go**
+
+2. **SIntaxis Basica**
+    - Estructura de un programa go
+    - Variables y constantes
+    - Tipos de datos basicos (int, float, string,bool)
+
+2. **Estructuras de control**
+    ## Modulo 2: Progrmacion intermedia en go**
+
+    ## Modulo 3: Concurrencia con GO**
+
+    ## Modulo 4: Programacion Avanzada en Go**
+
+    ## Modulo 5: Ecosistema y buenas practicas**
+
+    ## Modulo 6: Temas especializados **
+
+    ## Modulo 7: Proyecto final**
+
+1. ** Desarrollo de un proyecto completo**
