@@ -36,3 +36,30 @@
     
 
 /*
+
+*/
+##PUNTEROS Y REFERENCIAS
+
+    - concepto de PUNTEROS
+    - operadores de PUNTEROS
+    - PUNTEROS en funciones
+    - Uso de punteros para optimizacion
+
+    El puntero almacena la dirección (la “ubicación”) en memoria donde está guardado el valor 10. 
+    Cuando desreferencias (*p), accedes a ese valor.
+
+    ##Operadores de los punteros
+    - & : obtiene la direccion de memoria de una variable (crea un puntero)
+    -*: Accede al valor almacenado en la direccion apuntada por un puntero.
+    &x → “dame la dirección donde está x”
+    *p → “dame (o cambia) el valor que está en la dirección almacenada en p”
+
+    ##Punteros en funciones 
+    usamos puntero para pasar referencias a funciones.
+    lo que permite modificar directamente el valor de una variable dentro de una funcion.
+
+    ventajas:
+    - eficiencia, ya quie reduce la cantiadad de memoria, al evitar copias innecesarias
+    - modificaicon directa: permite modificar variables originales desde funciones o estructuras 
+    - interoperativilidad: es clave para cuando se trabaja con Apis de bajo nivel
+/*

@@ -2,32 +2,22 @@ package main
 
 import "fmt"
 
-//CRECION DE FUNCIONES RECURSIVAS
+//##Punteros y funciones
 
-func suma(n int) int {
-	if n == 0 {
-		return 0
-	}
-	return n + suma(n-1)
+func modificarValor(ptr *int) {
+	*ptr = 50
 }
 
 func main() {
+	//declaracion de variables
 
-	//recursion  es una tecnica de la programacion
-	//donde una funcion se llama a si misma de forma directa o indirecta,
-	//para resolver un problema, subdividiendolo en subproblemas mas pequeños
+	x := 10
 
-	//en GO se implementa definiendo una funcion que tiene una condicion base para
-	//detener la recursion y una llamada recursiva para resolver el problema
+	fmt.Println("Valor de x antes de la funcion:", x)
 
-	//codicion base: hasta cuando se puede llamar para no entrar en bucle infinito
-	//llamada recursiva: se llama a la funcion dentro de si misma, con argumentos que cada ves que
-	//se llamen van a se modificados
+	//pasar la direccion de memoria de x a la funcion
+	modificarValor(&x)
 
-	//sumar un numero de 1 a n
-
-	numero := 5
-	resultado := suma(numero)
-	fmt.Println("La suma de los numeros de 1 a", numero, "es:", resultado)
+	fmt.Println("Valor de x despues de la funcion:", x)
 
 }

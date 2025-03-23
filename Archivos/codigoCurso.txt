@@ -186,4 +186,70 @@ func main() {
 
 	// el clouseer va a recordar el valor de count
 
-	// funcino que usa closures
+RECURSION 
+
+package main
+
+import "fmt"
+
+//CRECION DE FUNCIONES RECURSIVAS
+
+func suma(n int) int {
+	if n == 0 {
+		return 0
+	}
+	return n + suma(n-1)
+}
+
+func main() {
+
+	//recursion  es una tecnica de la programacion
+	//donde una funcion se llama a si misma de forma directa o indirecta,
+	//para resolver un problema, subdividiendolo en subproblemas mas pequeños
+
+	//en GO se implementa definiendo una funcion que tiene una condicion base para
+	//detener la recursion y una llamada recursiva para resolver el problema
+
+	//codicion base: hasta cuando se puede llamar para no entrar en bucle infinito
+	//llamada recursiva: se llama a la funcion dentro de si misma, con argumentos que cada ves que
+	//se llamen van a se modificados
+
+	//sumar un numero de 1 a n
+
+	numero := 5
+	resultado := suma(numero)
+	fmt.Println("La suma de los numeros de 1 a", numero, "es:", resultado)
+
+}
+
+package main
+
+import "fmt"
+
+func main() {
+
+	//los puntero permiten trabajar con la direccion de memoria de una
+	//variable en lugar de su valor.
+	// un puntero almacena la direccion de memoria de una variable
+	//y permite acceder y modificar su valor directamente.
+	//permite la modficacion de la variable desde diversos lugares del sistema
+	//optimizan el uso de memoria al permitir compartir datos entre funciones
+
+	//declaracion de punteros
+
+	//declara una variable normal
+
+	x := 10
+
+	//declara un puntero a un int
+
+	var puntero *int
+
+	//asigna la direccion de memoria de x a puntero
+
+	puntero = &x
+
+	fmt.Println("Direccion de la memoria de x:", puntero)
+	fmt.Println("Valor de x a traves del puntero:", *puntero)
+
+}
