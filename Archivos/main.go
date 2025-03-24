@@ -2,22 +2,64 @@ package main
 
 import "fmt"
 
-//##Punteros y funciones
+type Empleado struct {
+	Nombre   string
+	Apellido string
+	Edad     int
+	Email    string
+}
 
-func modificarValor(ptr *int) {
-	*ptr = 50
+func (e Empleado) MostrarDetalles() {
+	fmt.Printf("Nombre: %s\n", e.Nombre)
+	fmt.Printf("Apellido: %s\n", e.Apellido)
+	fmt.Printf("Edad: %d\n", e.Edad)
+	fmt.Printf("Email: %s\n", e.Email)
+}
+
+type Gerente struct {
+	Empleado
+	Departamento string
+}
+
+func (g Gerente) MostrarDetallesGerente() {
+	g.MostrarDetalles()
+	fmt.Printf("Departamento: %s\n", g.Departamento)
 }
 
 func main() {
-	//declaracion de variables
+	emp := Empleado{
+		Nombre:   "Juan",
+		Apellido: "Perez",
+		Edad:     30,
+		Email:    "juan.perez@example.com",
+	}
 
-	x := 10
-
-	fmt.Println("Valor de x antes de la funcion:", x)
-
-	//pasar la direccion de memoria de x a la funcion
-	modificarValor(&x)
-
-	fmt.Println("Valor de x despues de la funcion:", x)
-
+	ger := Gerente{
+		Empleado: Empleado{
+			Nombre:   "Ana",
+			Apellido: "Gomez",
+			Edad:     53,
+			Email:    "ANA.GOMEZ@example.com",
+		},
+		Departamento: "IT",
+	}
+	emp.MostrarDetalles()
+	ger.MostrarDetallesGerente()
 }
+
+/*
+	Embedding sintaxis:
+
+	type EstruturaA struct {
+		campo1 string
+		campo2 int
+	}
+
+	type EstruturaB struct {
+		EstruturaA
+		campo3
+	}
+
+
+
+*/

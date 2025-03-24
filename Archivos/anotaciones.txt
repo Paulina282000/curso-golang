@@ -63,3 +63,28 @@
     - modificaicon directa: permite modificar variables originales desde funciones o estructuras 
     - interoperativilidad: es clave para cuando se trabaja con Apis de bajo nivel
 /*
+
+*/
+##ESTRUCTURAS Y METODOS##
+
+    - definicion de estructuras(structs)-> definir modelos de datos claros
+    - Metodos y receptores (receivers) -> encapsular comportamiento relacionado con ese modelo
+    - embodding en Go (herencia implicita)-> cuando para varios tip[os comparten campos/metodos comunes y quieres evitar duplicacion.
+
+    **structs**: tipo compuesto que agrupa campos nombrados de distintos tipos, bajo un mismo nombre, similar a los 
+    objetos en otros lenguajes, no incluyen ni metodos, ni herencia.
+    se usa para modelar entidades con atributos relacionados.
+    **metodos (receivers)**: funcion asociada a un tipo (struct o cualquier tipo definido) que opera sobre
+    su valor o puntero. Se usa para encapsular comportamiento especifico de un tipo, mantener API limpia.
+    Son funciones que se asocian a un metodo definido como un struct. Para asociarlo se usa un receptor, que es un argumento especial,
+    para que sepa que tipo pertenece. permite implementar comportamiento, de una froma similar a los emtodos en otros lenguajes.
+    **Embedding**: Inclusion de struct dentro de otro para reutilizar campos y metodos (herencia implicita).
+    no existe la herencia, pero se usa la tecnica embodding, permitiendo la reutilziar.
+    EL Embedding permite que una estructura contenga otra estrutura como un campo mas, pero sin un nombre
+    explicito pra dicho campo, esto resulta en una herencia implicita donde los campos de la estructura embedia,
+    son accedodos desde la estrucutura que la tiene embebida como si fueran propias.
+    las ventajas son que go utiliza composicion y no herencia lo que permite estructuras mas flecibles y menos acopladas.
+    tambien permite la reutilizacion de estructuras de una manera menos rigida
+    simplicidad, no necesitas modificadores de acceso como private, protected, etc.
+    Se usa para compartir comportamiento/estado entre tipos sin herencia.
+/*

@@ -253,3 +253,141 @@ func main() {
 	fmt.Println("Valor de x a traves del puntero:", *puntero)
 
 }
+
+package main
+
+import "fmt"
+
+//##Punteros y funciones
+
+func modificarValor(ptr *int) {
+	*ptr = 50
+}
+
+func main() {
+	//declaracion de variables
+
+	x := 10
+
+	fmt.Println("Valor de x antes de la funcion:", x)
+
+	//pasar la direccion de memoria de x a la funcion
+	modificarValor(&x)
+
+	fmt.Println("Valor de x despues de la funcion:", x)
+
+}
+
+##structs
+
+package main
+
+import "fmt"
+
+type Book struct {
+	title  string
+	author string
+	year   int
+	pages  int
+	price  float64
+}
+
+func main() {
+
+	//structs
+	/*
+		type NombreStruct struct {
+			campo1 tipo1
+			campo2 tipo2
+		}
+	*/
+
+	//declaracion de variables
+
+	//CREAR VARIABLES DE TIPO STRUCT BOOK
+
+	myBook := Book{
+		title:  "The Go Programming Language",
+		author: "Alan A. A. Donovan",
+		year:   2016,
+		pages:  432,
+		price:  59.99,
+	}
+
+	fmt.Println("Libro:", myBook.title)
+	fmt.Println("Autor:", myBook.author)
+	fmt.Println("Año:", myBook.year)
+	fmt.Println("Paginas:", myBook.pages)
+	fmt.Println("Precio:", myBook.price)
+
+}
+
+package main
+
+import "fmt"
+
+//definicion de la estructura
+type Book struct {
+	title  string
+	author string
+	year   int
+	pages  int
+	price  float64
+}
+
+//metodo asociado a la estructura Book pra mostrar detalles del libro
+
+func (b Book) DisplayInfo() {
+	fmt.Println("Detalles del libro:")
+	fmt.Println("--------------------------------")
+	fmt.Printf("Titulo: %s\n", b.title)
+	fmt.Printf("Autor: %s\n", b.author)
+	fmt.Printf("Año: %d\n", b.year)
+	fmt.Printf("Paginas: %d\n", b.pages)
+	fmt.Printf("Precio: %.2f\n", b.price)
+}
+
+// Metodo asociado para aplicar descuentos al precio del libro
+
+func (b *Book) AplicarDescuento(descuento float64) {
+	b.price = b.price - descuento
+}
+
+func main() {
+
+	/* estructura de los metodos con receptores
+	//sintaxis revicer
+
+	func(revicer TipoDelReciver) nombreDelMetodo(parametros) (tipoDeRetorno) {
+		//codigo del metodo
+	}
+	//Hay distintos tipos de receptores:
+	// los por valor: el metodo trabaja con una copia del valor del receptor
+	// los por puntero: el metodo trabaja con el valor original
+	*/
+
+	//creamos su instancia
+
+	myBook := Book{
+		title:  "El secreto de la felicidad",
+		author: "Juan Perez",
+		year:   2024,
+		pages:  300,
+		price:  25.99,
+	}
+
+	myBook.DisplayInfo()
+
+	myBook.AplicarDescuento(10)
+
+	myBook.DisplayInfo() // DESCUENTO APLICADO DE 10 PESOS
+
+	/*
+		Usamos receptores por valor cuando:
+		- si el metodo no necesita modificar el valor del receptor, como el displayinfo
+		- si el recepro no contiene muchos datos
+		Usamos receptores por puntero cuando:
+		- si el metodo necesita modificar el valor del receptor
+		- si el receptor es una estructura grande o compleja
+	*/
+}
