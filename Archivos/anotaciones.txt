@@ -167,4 +167,19 @@
     - Timeout : Usa select + time.after para cancelar operaciones que tarden demasiado.
 
     ##PROGRAMACION AVANZADA EN GO##
-        -
+        - **Manejo de errores**
+            - Error handling basico ('error')
+            Que es : el tipo de error es simplemente una interfaz con un metodo Error() string.
+            Uso: Las funciones devuelve un valor de tipo error como ultimo retorno; se comprueba if err != nil{...}
+
+            - Errores personalizados
+            Que es: crear tus propios tipos que implementan la interfaz error para agregar contexto (codigos, campos adicionales)
+            Uso: Facilita diferenciar errores y transportar informacion extra
+            - Panics y recovers
+            Panic: detiene la ejecucion normal inmediatamente y comienza a hacer "unwind" del stack,
+            ejecutando defer antes de terminar el programa (similar a una excepcion no controlada)
+            Recover: Solo funciona dentro de un defer y captura un panic, permitiendo continuar la 
+            ejecucion en lugar de terminar el programa.
+            Uso: Reservado para errores criticos o situaciones inesperadas que no deberian ocurrir
+            durante un flujo normal; recover se usa para construir mecanismos de contencion (por ejemplo, 
+            en servidores HTTP para evita que un panic derrbe todo el servicio)

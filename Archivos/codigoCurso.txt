@@ -789,3 +789,97 @@ func combinar(c1, c2 <-chan string) <-chan string {
 
 	return salida
 }
+
+##MANEJO DE ERRORES##
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+// manejo de errores
+func dividir(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, errors.New("division por cero")
+	}
+	return a / b, nil
+}
+
+func main() {
+	resultado, err := dividir(10, 0)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("Resultado:", resultado)
+
+}
+
+##ERROR PERSONALIZADO##
+
+package main
+
+import (
+	"fmt"
+)
+
+// manejo de errores personalizados
+
+type DividirError struct {
+	Dividiendo float64
+	Divisor    float64
+}
+
+func (e *DividirError) Error() string {
+	return fmt.Sprintln("No se puede dividir por cero", e.Dividiendo, e.Divisor)
+}
+
+func dividir(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, &DividirError{a, b}
+	}
+	return a / b, nil
+}
+
+func main() {
+	resultado, err := dividir(10, 0)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("Resultado:", resultado)
+}
+
+##ERRORES CON PANIC Y RECOVER##
+
+package main
+
+import (
+	"fmt"
+)
+
+// manejo de errores con panic y recover
+
+func dividirConPanic(a, b float64) float64 {
+	if b == 0 {
+		panic("division por cero") //panic es una funcion que detiene la ejecucion del programa y lanza un error
+	}
+	return a / b
+}
+
+func manejarPanic() {
+	if r := recover(); r != nil {
+		fmt.Println("Ocurrio un error:", r)
+	}
+}
+
+func main() {
+	defer manejarPanic()
+
+	fmt.Println("inicio de la ejecucion")
+	resultado := dividirConPanic(5, 0)
+	fmt.Println("Resultado de la division", resultado)
+	fmt.Println("Fin programa")
+}
