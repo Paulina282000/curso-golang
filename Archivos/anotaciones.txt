@@ -115,3 +115,16 @@
     Polimorfismo: distintos tipos pueden "hablar un mismo idioma" si implementan la misma interface
     interface{}: tiupo generico para cualquier valor; hay que usarlo con precaucion por que se pierde seguridad.
 /*
+
+##CONCURRENCIA EN GO##
+    - Introduccion a Gorutines: son hilos de ejecucion ligeros, permitiendole al programa realizar tareas en simultaneo
+    sin tener que esperar que una tarea termine para comenzar la siguiente. son eficiente ya que son mas ligeros qeu los tradicionales, por lo tanto 
+    no sobre cargan el sistema. el modelo de concurrencia es facil de administrar ya que ofrece herramientas como canales para sincronizar y comunicar de maneraeficiente. 
+    Funcion ligera que Go ejecuta de forma concurrecte. Se usa para ejecutar tareas en paralelo
+    sin bloquear el flujo principal.
+    - Creacion y manejo de Goroutines
+    Anteponer go a la llamada de funcion. Se usa comunmente co go miFuncion() lanza esa funcion enbackground
+    inmediantamente,
+    - Ejecucion concurrente
+    Varias gorutines corren al mismo tiempo gestionadas por el scheduler de Go.
+    Se usa para realizar I/O (input/output), calculos o manejar multiples peticiones simultaneamente.

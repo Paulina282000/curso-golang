@@ -459,6 +459,121 @@ func main() {
 
 
 ##INTERFACES##
+// Go: Ejemplo de interfaces y polimorfismo
+package main
+
+import "fmt"
+
+//interface vacia:
+//interface{}: tipo vacio, representa cualquier valor
+//util para:
+//- funciones que pueden recibir cualquier tipo de dato
+//- estructuras de datos heterogeneas (ej: JSON)
+//- pruebas unitarias (ej: mock objects)
+
+//sintaxis interface vacia:
+//interface{}
+
+// Shape define un comportamiento común para cualquier figura
+type Shape interface {
+	Area() float64
+}
+
+// Circle representa un círculo con su radio
+type Circle struct {
+	radius float64
+}
+
+func (c Circle) Area() float64 {
+	return 3.1416 * c.radius * c.radius
+}
+
+// Rectangle representa un rectángulo con ancho y alto
+type Rectangle struct {
+	width, height float64
+}
+
+func (r Rectangle) Area() float64 {
+	return r.width * r.height
+}
+
+// printArea acepta cualquier Shape e imprime su área
+func printArea(s Shape) {
+	fmt.Println("Área:", s.Area())
+}
+
+func main() {
+	circle := Circle{radius: 5}
+	rectangle := Rectangle{width: 3, height: 4}
+
+	printArea(circle)    // Polimorfismo: Circle implementa Shape
+	printArea(rectangle) // Polimorfismo: Rectangle implementa Shape
+}
 
 
 */
+
+*/
+##HILOS y CONCURRENCIA##
+
+package main
+
+import "fmt"
+
+// manejo de gorutines:
+// las gorutines son funciones ligeras que se ejecutan concurrentemente.
+// se antepone la palabra reservada go a la llamada de la funcion.
+// usando go concurrentemente puede pasar que no se ejecuten en orden, por que se ejecutan en paralelo.
+//la sin go que termina de ejecutarse primero, sera la que se ejecute primero.
+//para que se terminen de ejecutar las gorutines se usa el waitgroup
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		fmt.Println(s)
+	}
+}
+
+func main() {
+	go say("Hello")
+	say("world")
+}
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    go say("Hello")
+    say("world")
+    time.Sleep(100 * time.Millisecond) // espera a que la goroutine termine
+}
+
+
+//FORMA CORRECTA DE SINCRONIZAR GO RUTINES
+
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		fmt.Println(s)
+	}
+}
+
+func main() {
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	go func() {
+		defer wg.Done()
+		say("Hello")
+	}()
+
+	say("world")
+	wg.Wait() // espera hasta que todas las goroutines terminen
+}
+/*
