@@ -166,8 +166,8 @@
     pool de 5 workers leyendo trabajos de un canal de tareas.
     - Timeout : Usa select + time.after para cancelar operaciones que tarden demasiado.
 
-    ##PROGRAMACION AVANZADA EN GO##
-        - **Manejo de errores**
+##PROGRAMACION AVANZADA EN GO##
+    - **Manejo de errores**
             - Error handling basico ('error')
             Que es : el tipo de error es simplemente una interfaz con un metodo Error() string.
             Uso: Las funciones devuelve un valor de tipo error como ultimo retorno; se comprueba if err != nil{...}
@@ -183,3 +183,14 @@
             Uso: Reservado para errores criticos o situaciones inesperadas que no deberian ocurrir
             durante un flujo normal; recover se usa para construir mecanismos de contencion (por ejemplo, 
             en servidores HTTP para evita que un panic derrbe todo el servicio)
+
+    - **Programacion Orientada a Objetos**
+        - Diferencias entre Go y otros lenguajes OPP
+        La herencia no existe en go, solo embedding de structs
+        Encapsulacion en go se trabaja siendo publica cuando el nombre inicia con Mayuscula, no maneja
+        modificadores como POO (private,public,protectedF)
+        Polimorfismo en POO esta basado en jerarquias de clases, y en Go esta basado en interfaces implicitas (duck typing)
+        Clases en POO tipos que combinan datos y comportamiento, en go Struct + metodos separados
+        Los connstructores son metodos especiales de inicializacion, en go funciones de newType(..)
+        - Emulacion de patrones OOP con structs e interfaces
+        - Inyeccion de dependencias en Go

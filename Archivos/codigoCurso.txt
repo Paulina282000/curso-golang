@@ -883,3 +883,40 @@ func main() {
 	fmt.Println("Resultado de la division", resultado)
 	fmt.Println("Fin programa")
 }
+
+##POO VS GO##
+
+creacion de clases 
+
+//Programacion Orientada a Objetos en Go
+// go no tiene clases, tiene structs
+// go no tiene herencia, tiene embedding de structs (composicion)
+// go no tiene constructores, tiene funciones de newType(..)
+// go no tiene modificadores de acceso, tiene publico y privado
+// go no tiene polimorfismo, tiene interfaces implicitas (duck typing)
+// interfaces en go son implicitas, no es necesario implementarlas
+// interfaces en go pueden tener metodos de instancia y de tipo
+// interfaces en go pueden tener metodos con el mismo nombre
+// interfaces en go pueden tener metodos con el mismo nombre y diferente firma
+// interfaces en go pueden tener metodos con el mismo nombre y diferente firma
+// interfaces en go pueden tener metodos con el mismo nombre y diferente firma
+
+package main
+
+import "fmt"
+
+type Persona struct {
+	Nombre string
+	Edad   int
+}
+
+//metodos asociados a la struct Persona
+
+func (p Persona) Saludar() {
+	fmt.Println("Hola, mi nombre es", p.Nombre)
+}
+
+func main() {
+	persona := Persona{Nombre: "Juan", Edad: 20}
+	persona.Saludar()
+}

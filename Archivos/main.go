@@ -1,29 +1,23 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-// manejo de errores con panic y recover
+//uso de intefaces en go
 
-func dividirConPanic(a, b float64) float64 {
-	if b == 0 {
-		panic("division por cero") //panic es una funcion que detiene la ejecucion del programa y lanza un error
-	}
-	return a / b
+type Hablador interface {
+	Hablar() string
 }
 
-func manejarPanic() {
-	if r := recover(); r != nil {
-		fmt.Println("Ocurrio un error:", r)
-	}
+type Persona struct {
+	Nombre string
+	Edad   int
+}
+
+func (p *Persona) Hablar() string { //aca vemos como se implementa la interface Hablador, para que la struct Persona pueda usar el metodo Hablar
+	return "Hola, mi nombre es " + p.Nombre
 }
 
 func main() {
-	defer manejarPanic()
-
-	fmt.Println("inicio de la ejecucion")
-	resultado := dividirConPanic(5, 0)
-	fmt.Println("Resultado de la division", resultado)
-	fmt.Println("Fin programa")
+	persona := Persona{Nombre: "Juan", Edad: 20}
+	fmt.Println(persona.Hablar())
 }
