@@ -128,3 +128,22 @@
     - Ejecucion concurrente
     Varias gorutines corren al mismo tiempo gestionadas por el scheduler de Go.
     Se usa para realizar I/O (input/output), calculos o manejar multiples peticiones simultaneamente.
+
+##CANALES O CHANNELS##
+    - Concepto y uso de canales:
+    Mecanismo nativo de go para comunicar datos entre gorutines de forma segura
+    Y sincronizada. actua como conducto donde una gorutine puede enviar un valor y otra puede recibirlo.
+    - Envio y recepcion de datos a traves de canales
+    Enviar un canal: ch <- value
+    Recibir de una canal: value := <-CHANNELS
+    - canales sin buffers y con buffers
+        Sin buffer: el emisor espera hasta que el receptor lea, se usa para la sincronizacion estricta.
+        COn buffer: Eminisor bloquea solo cuando buffer lleno; receprtor cuando vacio. se usa para colas temporales, desacoplar ritmo.
+    - Canales de cierre ('close')
+    cerrar un canal indica que no habra mas envios
+    receptores pueden seguir leyendo hasta agotar valores; despues reciben el zero-value.
+
+    RESUMEN:
+    - Canal sin buffer: sincroniza exactamente emisor <-> receptor
+    - Canal con buffer: permite almacenar hasta N valores antes de bloquear.
+    - close(ch): se;aliza "no mas envios"; util para loops de lectura (for v := range ch)

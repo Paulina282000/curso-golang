@@ -577,3 +577,94 @@ func main() {
 	wg.Wait() // espera hasta que todas las goroutines terminen
 }
 /*
+
+*/
+##CHANNELS##
+// canales en go:
+// son un mecanismo para sincronizar datos entre gorutines
+// se declaran con la palabra reservada chan
+// se pueden usar para enviar y recibir datos entre gorutines
+// se pueden usar para sincronizar la ejecucion de gorutines
+// se pueden usar para comunicar datos entre gorutines
+// se pueden usar para sincronizar la ejecucion de gorutines
+
+package main
+
+import "fmt"
+
+func main() {
+	canal := make(chan int) // creacion del canal
+	canal <- dato           // usando el canal para enviar datos
+	dato := <-canal         // usando el canal para recibir datos
+}
+
+
+channel sin buffer
+
+package main
+
+import "fmt"
+
+func main() {
+	canal := make(chan string) 
+
+	//gorutine para enviar un mensaje, es sin buffer, por que el canal especificado es un string
+
+	go func() {
+		canal <- "Hola desde un canal"
+	}()
+
+	//recibir el mensaje
+	mensaje := <-canal
+	fmt.Println(mensaje)
+}
+
+##Canal con buffer 2##
+solo almacena esos dos mensajes, si se enviace otro da error, ya 1que la 
+capacidad es de 2 mensajes 
+
+package main
+
+import "fmt"
+
+func main() {
+	canal := make(chan string, 2) // se agrega el 2, por lo que el canal puede almacenar 2 mensajes
+
+	//gorutine para enviar un mensaje, es sin buffer, por que el canal especificado es un string
+
+	canal <- "Hola desde un canal"
+	canal <- "Hola desde un canal 2"
+
+	//recibir el mensaje
+
+	fmt.Println(<-canal)
+	fmt.Println(<-canal)
+}
+##Cerrar canales##
+package main
+
+import "fmt"
+
+func main() {
+	canal := make(chan string, 2) // se agrega el 2, por lo que el canal puede almacenar 2 mensajes
+
+	//gorutine para enviar un mensaje, es sin buffer, por que el canal especificado es un string
+
+	canal <- "Hola desde un canal"
+	canal <- "Hola desde un canal 2"
+
+	//cerrar el canal
+
+	close(canal)
+
+	for valor := range canal {
+		fmt.Println(valor)
+	}
+
+	//recibir el mensaje
+
+	fmt.Println(<-canal)
+	fmt.Println(<-canal)
+}
+
+/*
