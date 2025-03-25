@@ -88,3 +88,30 @@
     simplicidad, no necesitas modificadores de acceso como private, protected, etc.
     Se usa para compartir comportamiento/estado entre tipos sin herencia.
 /*
+
+
+
+*/
+##INTERFACES##
+
+    -definicion y uso de INTERFACES: es un tipo que define un conjunto de Metodos
+    especificando el comportamiento que otros tipos deben 
+    - polimorfismo en GO
+    - Tipos vacios ('interface{}') y su uso
+
+    Interface: es un conjunto de metodos, define comportamiento, no datos.
+    Se usa para:
+    - desacoplar codigo: Cualquier tipo que implemente esos metodos satisface la interface.
+    - dependencia inversa: funciones reciben interfaces en lugar de tipos concretos.
+
+    Polimorfismo en Go: Se logra implicitamente, no hay 'implements'
+    un tipo satisface una interface si tiene todos sus metodos
+    se logra atraves de las interfaces, 
+    - Tipo vacio (interface{})
+    Representa cualquier valor, porque no exige metodos.
+    Util para colecciones heterogeneas, JSON dinamico o APIs genericas
+
+    Interfaces: contratos de comportamiento--> Facilitan pruebas, modularidad y extensibilidad.
+    Polimorfismo: distintos tipos pueden "hablar un mismo idioma" si implementan la misma interface
+    interface{}: tiupo generico para cualquier valor; hay que usarlo con precaucion por que se pierde seguridad.
+/*
