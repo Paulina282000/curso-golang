@@ -668,3 +668,124 @@ func main() {
 }
 
 /*
+
+##UUSO DEL SELECT##
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	canal1 := make(chan string)
+	canal2 := make(chan string)
+
+	go func() {
+		time.Sleep(time.Second)
+		canal1 <- "Mensaje desde el canal 1"
+	}()
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		canal2 <- "Mensaje desde el canal 2"
+	}()
+
+	for i := 0; i < 2; i++ {
+		select {
+		case mensaje1 := <-canal1:
+			fmt.Println(mensaje1)
+		case mensaje2 := <-canal2:
+			fmt.Println(mensaje2)
+		}
+	}
+}
+
+##MULTIPLEXACION##
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	//multiplexacion de canales
+	//crear 2 canal de tipo string
+	canal1 := make(chan string)
+	canal2 := make(chan string)
+
+	//crear una goroutine para enviar datos al canal
+	go func() {
+		for {
+			canal1 <- "Mensaje 1"
+		}
+	}()
+	go func() {
+		for {
+			canal2 <- "Mensaje 2"
+		}
+	}()
+
+	//usar select para escuchar los mensajes de ambos canales
+
+	for i := 0; i < 5; i++ {
+		select {
+		case mensaje1 := <-canal1: //si el canal 1, tiene datos, se imprime
+			fmt.Println(mensaje1)
+		case mensaje2 := <-canal2: //si el canal 2, tiene datos, se imprime
+			fmt.Println(mensaje2)
+		}
+	}
+
+}
+##Combinacion de canales##
+
+// Go: Ejemplo de Fan‑In usando canales
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// Creamos dos canales de origen
+	canal1 := make(chan string)
+	canal2 := make(chan string)
+
+	// Lanzamos goroutines que envían mensajes a cada canal y luego los cierran
+	go func() {
+		canal1 <- "Mensaje A desde canal1"
+		close(canal1)
+	}()
+	go func() {
+		canal2 <- "Mensaje B desde canal2"
+		close(canal2)
+	}()
+
+	// Combinamos ambos canales en uno solo (fan‑in)
+	salida := combinar(canal1, canal2)
+
+	// Leemos todos los mensajes del canal combinado hasta que se cierre
+	for mensaje := range salida {
+		fmt.Println(mensaje)
+	}
+}
+
+// combinar une dos canales de entrada en un único canal de salida
+// Objetivo: simplificar la recepción de datos de múltiples fuentes
+func combinar(c1, c2 <-chan string) <-chan string {
+	salida := make(chan string)
+
+	go func() {
+		for msg := range c1 {
+			salida <- msg
+		}
+		for msg := range c2 {
+			salida <- msg
+		}
+		close(salida)
+	}()
+
+	return salida
+}

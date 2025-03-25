@@ -147,3 +147,24 @@
     - Canal sin buffer: sincroniza exactamente emisor <-> receptor
     - Canal con buffer: permite almacenar hasta N valores antes de bloquear.
     - close(ch): se;aliza "no mas envios"; util para loops de lectura (for v := range ch)
+
+##SELECT y MULTIPLEXACION##
+
+    - Uso de 'select' para sincronizacion:construccion que permite trabajar con multiples canales al mismo tiempo.
+    se usa cuando queremos sincronizar operaciones en canales.
+    select es como un switch pero para operaciones de canal. Permite esperar en multiples 
+    canales simultaneamente, ejecutando el caso que este listo primero.
+    - Multiplexacion de canales: Consiste en manejar multiples canales al mismo tiempo. 
+    La multiplexacion uns select para combinar datos de varios canales en uno solo flujo logico.
+    Util para leer de multiples fuentes concurrentes sin bloquear ni una sola.
+    - Patrones comunes de concurrencia en Go
+
+    Patron: 
+    - Fan-out/ fan-in : varios productores->multiples gorutines generan datos; un consumidor los fusiona.
+    por ejemplo, multiplexar resultados de varias APIs en un canal unificado.
+    - Worker pool: Limita el numero de gorutines trabajando en tareas para controlar recursos. por ejemplo,
+    pool de 5 workers leyendo trabajos de un canal de tareas.
+    - Timeout : Usa select + time.after para cancelar operaciones que tarden demasiado.
+
+    ##PROGRAMACION AVANZADA EN GO##
+        -
