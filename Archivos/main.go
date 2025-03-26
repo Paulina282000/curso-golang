@@ -1,23 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+)
 
-//uso de intefaces en go
-
-type Hablador interface {
-	Hablar() string
-}
-
-type Persona struct {
-	Nombre string
-	Edad   int
-}
-
-func (p *Persona) Hablar() string { //aca vemos como se implementa la interface Hablador, para que la struct Persona pueda usar el metodo Hablar
-	return "Hola, mi nombre es " + p.Nombre
+// estamos mapearando un json a una estructura de datos
+type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
 }
 
 func main() {
-	persona := Persona{Nombre: "Juan", Edad: 20}
-	fmt.Println(persona.Hablar())
+
+	fileName := "person.json"
+
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Println("Error al abrir el archivo:", err)
+		return
+	}
+	defer file.Close()
+
+	var persona Person
+
+	err = json.NewDecoder(file).Decode(&persona) // si surge un error, se guarda en la variable err
+
+	fmt.Println("Nombre:", persona.Name)
+	fmt.Println("Edad:", persona.Age)
+
 }

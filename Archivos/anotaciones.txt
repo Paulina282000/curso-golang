@@ -194,3 +194,24 @@
         Los connstructores son metodos especiales de inicializacion, en go funciones de newType(..)
         - Emulacion de patrones OOP con structs e interfaces
         - Inyeccion de dependencias en Go
+
+    - **Manipulacion de Archivos**
+        - Lectura y escritura de Archivos
+        Operaciones para abrir, leer, crear o modificar archivos de texto o binarios en disco.
+        Uso en Go: se emplean funciones del paquete os (os.open, os.create, os.openFile) y paquetes
+        auxiliares como io/ioutil, bufio o io para leer y escribir datos.
+        Ejemplo: leer un archivo de configuracion o escribir registros(logs) en un archivo.
+
+        - Manejo de archivos binarios : almacenar info en disco
+        Def: procesar archivos que contienen datos en formato no textual (por ejemplo, imagenes, audio,archivos, comprimidos),
+        donde los datos se representan como secuencia de bytes.
+        Uso en go: Utiliza funciones del paquete os y io para leer o escribir datos en bruto. Para interpretar o construir 
+        datos binarios, se puede usar el paquete encoding/binary.
+        Ejemplo: leer los bytes de una imagen para precesarla o escribir datos binarios para comunicarse
+        con dispositivo externo.
+        - Trabajo con JSON y XML
+        Definicion: Manipulacion de datos estructurados en formatos de intercambio ampliamente usados:
+            - JSON: Formato ligero y legible para humanos, muy comun en APIs web.
+            - XML: El paquete encoding/xml ofrece funcionalidades similares a XML.
+        Ejemplo practico: Convertir un estrutura de datos a JSON para enviar una respuesta en una API REST 
+        o leer un archivo XML para cargar configuraciones.
