@@ -215,3 +215,23 @@
             - XML: El paquete encoding/xml ofrece funcionalidades similares a XML.
         Ejemplo practico: Convertir un estrutura de datos a JSON para enviar una respuesta en una API REST 
         o leer un archivo XML para cargar configuraciones.
+
+##ECOSISTEMA Y Y BUENAS PRACTICAS##
+    -Modulos y paquetes
+    paquete: es una unidad basica de organizacion de codigo en Go. cada archivo empiezacon package nombre.
+    Agrupa funciones, tipos y variables relacionadas. Se usa para reutilizar logica, compartir codigo entre archivos'
+    y proyectos.
+    Modulo: Conjunto de paquetes versionados juntos. Representados por un archivo go.mod en la raiz.
+    Se usa para definir la version de tu proyecto y gestionar dependencias externas.
+        - Creacion y uso de paquete
+        - Organizacion en go
+        Un paquete por directorio: cada carpeta es un paquete.
+        Seperar responsabilidades: handlers/, models/,services/
+        Nombre corto y descriptivo : evita nombres genericos.
+        - Gestion de dependencias con Go modules
+
+        Buenas practicas:
+        - Versiona tu modulo semanticamente(v1.2.3)
+        - Usa rutas de importacion completas (github.com/..)
+        - Ejecuta go fmt y go vet antes de commitear
+        - Revisa vulnerabilidades con go mod tidy y herramientas como govulncheck
