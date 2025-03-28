@@ -235,3 +235,10 @@
         - Usa rutas de importacion completas (github.com/..)
         - Ejecuta go fmt y go vet antes de commitear
         - Revisa vulnerabilidades con go mod tidy y herramientas como govulncheck
+
+##CREACION DE PROYECTO FINAL##
+    -**Desarrollo de un proyecto completo**
+        - Definicion del proyecto: Planificaicon y dise;O
+        - Implementacion de un sistema completo utilizando Go 
+        - Pruebas, optimizacion y despliegue
+        - Documentacion del proyecto y presentacion 
