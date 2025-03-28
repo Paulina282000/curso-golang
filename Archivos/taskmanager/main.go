@@ -1,4 +1,4 @@
-package taskmanager
+package main
 
 import "fmt"
 
@@ -9,14 +9,12 @@ type Task struct {
 	Completed   bool
 }
 
-var tasks = []Task
+var tasks = []Task{}
+var idCounter int
 
-var idCounter  int
-
-//creacion de cada funcion
+// Creación de cada función
 
 func createTask() {
-	
 	var title string
 	var description string
 	fmt.Println("Ingrese el titulo de la tarea: ")
@@ -26,10 +24,10 @@ func createTask() {
 
 	idCounter++
 	newTask := Task{
-		ID: idCounter,
-		Title: title,
+		ID:          idCounter,
+		Title:       title,
 		Description: description,
-		Completed: false,
+		Completed:   false,
 	}
 	tasks = append(tasks, newTask)
 	fmt.Println("Tarea creada exitosamente!")
@@ -43,15 +41,12 @@ func listTasks() {
 
 	fmt.Println("Tareas disponibles:")
 	for _, task := range tasks {
-
 		status := "Pendiente"
 		if task.Completed {
 			status = "Completada"
 		}
 		fmt.Printf("ID: %d, Titulo: %s, Descripcion: %s, Estado: %s\n", task.ID, task.Title, task.Description, status)
-		
-			
-		}
+	}
 }
 
 func updateTask() {
@@ -61,7 +56,7 @@ func updateTask() {
 
 	for i, task := range tasks {
 		if task.ID == id {
-			task[i].Completed = !task[i].Completed
+			tasks[i].Completed = !tasks[i].Completed
 			fmt.Println("Tarea actualizada exitosamente!")
 			return
 		}
@@ -75,12 +70,11 @@ func deleteTask() {
 	fmt.Scanln(&id)
 
 	for i, task := range tasks {
-		
-	}
-	if task.ID == id {
-		tasks = append(tasks[:i], tasks[i+1:]...)
-		fmt.Println("Tarea eliminada exitosamente!")
-		return
+		if task.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			fmt.Println("Tarea eliminada exitosamente!")
+			return
+		}
 	}
 	fmt.Println("Tarea no encontrada")
 }
@@ -117,3 +111,4 @@ func main() {
 			fmt.Println("Opcion invalida")
 		}
 	}
+}
